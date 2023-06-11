@@ -1,6 +1,8 @@
 var form = document.getElementById("user-form");
 form.addEventListener('submit', addToLocal);
 
+
+
 function addToLocal(e){
     e.preventDefault();
     // var x = 1;
@@ -14,20 +16,33 @@ function addToLocal(e){
     let subObj_serialized = JSON.stringify(subObj);
     localStorage.setItem(email, subObj_serialized);
  
-    
-
-    
     //  let subObj_deserialized = JSON.parse(localStorage.getItem("subObj"));
 
       var paragraph = document.createElement("P");
       paragraph.innerHTML = `${subObj["email"]} - ${subObj["phone"]}`;
-    //   paragraph.innerHTML = `${subObj_deserialized["email"]} - ${subObj_deserialized["phone"]}`;
       document.getElementById("test").appendChild(paragraph);
-      
+       // create delete button
+    var deleteBtn = document.createElement('button');
+    deleteBtn.className = 'btn btn-danger btn-sm float-right delete';
+    deleteBtn.appendChild(document.createTextNode('Delete'));
+    paragraph.appendChild(deleteBtn);
+    deleteBtn.addEventListener("click", delete_fn);
 
-
-    // localStorage.setItem("email", email);
-    // localStorage.setItem("password", pword);
+    function delete_fn(e){
+        if(e.target.classList.contains('delete')){
+            if(confirm('Are you sure?')){
+                var item = e.target.parentElement; //the parent element of delete btn is list item. 
+                document.getElementById("test").removeChild(item);
+                const first = (item.textContent).split(' ')[0]
+                localStorage.removeItem(first);
+                console.log(first)
+            }
+    
+    
+        }
+    
+    }
+    
 
 }
 
