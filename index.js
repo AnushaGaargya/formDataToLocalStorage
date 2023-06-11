@@ -10,6 +10,17 @@ function addToLocal(e){
     myObj["password"] = pword
     let myObj_serialized = JSON.stringify(myObj);
     localStorage.setItem("myObj", myObj_serialized);
+    
+    // var paragraph = document.createElement("P");
+    // paragraph.innerHTML = myObj_serialized;
+    // body.appendChild(paragraph);
+    
+     let myObj_deserialized = JSON.parse(localStorage.getItem("myObj"))
+
+      var paragraph = document.createElement("P");
+      paragraph.innerHTML = `${myObj_deserialized["email"]} - ${myObj_deserialized["password"]}`;
+      document.getElementById("test").appendChild(paragraph);
+      
 
 
     // localStorage.setItem("email", email);
