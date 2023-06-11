@@ -3,22 +3,25 @@ form.addEventListener('submit', addToLocal);
 
 function addToLocal(e){
     e.preventDefault();
-    var myObj = new Object();
+    // var x = 1;
+    
+    var subObj = new Object();
     var email = document.getElementById('email').value;
     var pword = document.getElementById('pw').value;
-    myObj["email"] = email
-    myObj["password"] = pword
-    let myObj_serialized = JSON.stringify(myObj);
-    localStorage.setItem("myObj", myObj_serialized);
+    subObj["email"] = email
+    subObj["phone"] = pword
+   
+    let subObj_serialized = JSON.stringify(subObj);
+    localStorage.setItem(email, subObj_serialized);
+ 
     
-    // var paragraph = document.createElement("P");
-    // paragraph.innerHTML = myObj_serialized;
-    // body.appendChild(paragraph);
+
     
-     let myObj_deserialized = JSON.parse(localStorage.getItem("myObj"))
+    //  let subObj_deserialized = JSON.parse(localStorage.getItem("subObj"));
 
       var paragraph = document.createElement("P");
-      paragraph.innerHTML = `${myObj_deserialized["email"]} - ${myObj_deserialized["password"]}`;
+      paragraph.innerHTML = `${subObj["email"]} - ${subObj["phone"]}`;
+    //   paragraph.innerHTML = `${subObj_deserialized["email"]} - ${subObj_deserialized["phone"]}`;
       document.getElementById("test").appendChild(paragraph);
       
 
